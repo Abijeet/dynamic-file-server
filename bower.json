@@ -1,0 +1,15 @@
+{
+  "name": "dynamic-file-server",
+  "description": "A Node.JS / Express server that serves dynamic templates using EJS.",
+  "license": "MIT",
+  "version": "0.0.1",
+  "authors": [
+    "Abijeet Patro <abijeetpatro@gmail.com>"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "jquery": "~2.1.4"
+  },
+  "private": true
+}

@@ -1,0 +1,17 @@
+body {
+  font-family: 'Open Sans';
+  line-height: 1.5em;
+  word-spacing: .7px; }
+  body .h1,
+  body .h2,
+  body .h3,
+  body .h4,
+  body .h5,
+  body .h6,
+  body h1,
+  body h2,
+  body h3,
+  body h4,
+  body h5,
+  body h6 {
+    font-weight: 600; }
