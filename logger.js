@@ -1,4 +1,6 @@
 /* global GET_CONFIG */
+'use strict';
+
 var winston = require('winston');
 var util = require('util');
 var WinstonDailyTransport = require('winston-daily-rotate-file');

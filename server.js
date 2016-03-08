@@ -1,5 +1,7 @@
 /* global GET_CONFIG */
 // NodeJS includes
+'use strict';
+
 var cluster = require('cluster');
 var express = require('express');
 var i18n = require('i18n');
@@ -8,6 +10,7 @@ var http = require('http');
 // Custom includes
 var config = require('./config');
 var logger = require('./logger');
+var networkInterface = require(__dirname + '/lib/network-utils');
 
 // Count the machine's CPUs
 var cpuCount = require('os').cpus().length;
@@ -54,12 +57,12 @@ if (GET_CONFIG('is_production') && cluster.isMaster) {
     response.render(fileName + '.ejs');
   });
   
-  
-  http.createServer(app).listen(GET_CONFIG('port'), GET_CONFIG('ip'), function(error) {
+  var ipToUse = networkInterface.getIpAddressForNetworkInterface() || GET_CONFIG('ip');
+  http.createServer(app).listen(GET_CONFIG('port'), ipToUse, function(error) {
     if (error) {
       logger.logAppErrors(error);
       process.exit(10);
     }
-    console.log('Express is listening on http://' + GET_CONFIG('ip') + ':' + GET_CONFIG('port'));
+    console.log('Express is listening on http://' + ipToUse + ':' + GET_CONFIG('port'));
   });
 }
