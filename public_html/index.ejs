@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Dynamic file server</title>
+  <head>   
+    <%- include('assets/partials/head', { isProd: isProd }) %>   
   </head>
-  <body></body>
+  <body>
+    <div class="main-body">
+      <%- include('assets/partials/taskbar', { isProd: true }); %>
+      <%- include('assets/partials/term', { isProd: isProd }) %>
+      <div class="icon" id="btnWeddingInvitation">
+        <img src="assets/img/ppf-phone.gif" alt="" title="Run wedding-invitation.sh">
+        <span>Wedding Invitation</span>
+      </div>
+    </div>
+  </body>
 </html>

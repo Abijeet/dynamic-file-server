@@ -1,7 +1,58 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
 body {
-  font-family: 'Open Sans';
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/***
+  END OF CSS RESET
+**/
+body {
+  font-family: monospace;
   line-height: 1.5em;
-  word-spacing: .7px; }
+  word-spacing: .7px;
+  font-size: 13px; }
   body .h1,
   body .h2,
   body .h3,
@@ -15,3 +66,91 @@ body {
   body h5,
   body h6 {
     font-weight: 600; }
+
+.main-body {
+  height: 100vh;
+  background-color: #87CEEB;
+  background-position: 20px bottom;
+  background-repeat: no-repeat; }
+  .main-body .icon {
+    width: 72px;
+    text-align: center;
+    margin-top: 12px;
+    margin-left: 12px;
+    cursor: pointer; }
+    .main-body .icon img {
+      width: 66px;
+      height: 52px;
+      margin-bottom: -4px; }
+    .main-body .icon span {
+      text-align: center;
+      font-size: 12px;
+      text-shadow: 0px 1px 1px rgba(88, 88, 88, 0.8); }
+
+.taskbar {
+  height: 30px;
+  line-height: 30px; }
+  .taskbar * {
+    box-sizing: border-box; }
+  .taskbar .app-icon {
+    margin-top: 4px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top; }
+  .taskbar .taskbar-1, .taskbar .taskbar-2, .taskbar .statusbar {
+    display: inline-block;
+    opacity: 0.85;
+    height: 30px;
+    background-color: #515151;
+    vertical-align: top; }
+  .taskbar .taskbar-1 {
+    width: 41%;
+    padding-left: 3px; }
+  .taskbar .taskbar-2 {
+    width: 41%; }
+  .taskbar .statusbar {
+    width: 18%;
+    color: #fff;
+    font-family: monospace;
+    text-align: right;
+    padding-right: 3px; }
+  .taskbar .active {
+    background: rgba(51, 51, 51, 0.7); }
+
+.term-container {
+  border: 2px solid #000;
+  width: 640px;
+  height: 460px;
+  float: right;
+  margin-right: 25px;
+  margin-top: 25px;
+  display: none;
+  border-radius: 3px; }
+
+.term-title {
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  background-color: #515151;
+  font-family: monospace;
+  font-size: 12px; }
+  .term-title strong {
+    font-weight: bold; }
+
+#term {
+  opacity: 0.8;
+  color: #00BE2C;
+  height: 420px; }
+  #term .cmd, #term .command div, #term .terminal-output div {
+    color: #00BE2C;
+    line-height: 17px; }
+  #term .cursor {
+    color: #00BE2C; }
+  #term a {
+    color: #00BE2C; }
+  #term a:hover {
+    color: #fff; }
+
+.hide {
+  display: none !important; }

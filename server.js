@@ -28,7 +28,7 @@ if (GET_CONFIG('is_production') && cluster.isMaster) {
   });
 } else {  
   app.use(function (req, res, next) {
-    res.setHeader('X-Powered-By', 'Abijeet Patro');
+    res.setHeader('X-Powered-By', 'Abijeet & Sravani');
     next();
   });
   
@@ -56,6 +56,14 @@ if (GET_CONFIG('is_production') && cluster.isMaster) {
     var fileName = request.params.filename;
     response.render(fileName + '.ejs');
   });
+  
+  // Render static files.
+  if(GET_CONFIG('is_production')) {
+    app.use('/', express.static(__dirname + '/dist/'));  
+  } else {
+    app.use('/', express.static(__dirname + '/public_html/'));
+  }
+  
   
   var ipToUse = networkInterface.getIpAddressForNetworkInterface() || GET_CONFIG('ip');
   http.createServer(app).listen(GET_CONFIG('port'), ipToUse, function(error) {
