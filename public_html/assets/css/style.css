@@ -68,19 +68,30 @@ body {
     font-weight: 600; }
 
 .main-body {
-  height: 100vh;
-  background-color: #87CEEB;
-  background-position: 20px bottom;
-  background-repeat: no-repeat; }
+  min-height: 100vh; }
+  .main-body .blossom-img {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: none; }
+    @media (max-width: 1300px) {
+      .main-body .blossom-img {
+        width: 510px; } }
+    @media (max-width: 1100px) {
+      .main-body .blossom-img {
+        width: 380px; } }
+    @media (max-width: 900px) {
+      .main-body .blossom-img {
+        width: 320px; } }
   .main-body .icon {
-    width: 72px;
+    width: 84px;
     text-align: center;
     margin-top: 12px;
     margin-left: 12px;
     cursor: pointer; }
     .main-body .icon img {
-      width: 66px;
-      height: 52px;
+      width: 76px;
+      height: 60px;
       margin-bottom: -4px; }
     .main-body .icon span {
       text-align: center;
@@ -106,21 +117,31 @@ body {
   .taskbar .taskbar-1 {
     width: 41%;
     padding-left: 3px; }
+    @media (max-width: 1160px) {
+      .taskbar .taskbar-1 {
+        width: 39%; } }
   .taskbar .taskbar-2 {
     width: 41%; }
+    @media (max-width: 1160px) {
+      .taskbar .taskbar-2 {
+        width: 38%; } }
   .taskbar .statusbar {
     width: 18%;
     color: #fff;
     font-family: monospace;
     text-align: right;
-    padding-right: 3px; }
+    padding-right: 3px;
+    overflow: hidden; }
+    @media (max-width: 1160px) {
+      .taskbar .statusbar {
+        width: 23%; } }
   .taskbar .active {
     background: rgba(51, 51, 51, 0.7); }
 
 .term-container {
   border: 2px solid #000;
   width: 640px;
-  height: 460px;
+  height: 440px;
   float: right;
   margin-right: 25px;
   margin-top: 25px;
@@ -141,7 +162,7 @@ body {
 #term {
   opacity: 0.8;
   color: #00BE2C;
-  height: 420px; }
+  height: 400px; }
   #term .cmd, #term .command div, #term .terminal-output div {
     color: #00BE2C;
     line-height: 17px; }

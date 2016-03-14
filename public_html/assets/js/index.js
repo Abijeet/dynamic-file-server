@@ -22,12 +22,31 @@ var Terminal = function() {
     'With love,',
     'Sravani & Abijeet.'
   ];
+  var PROMPT_MSG = '> ';
+  var CHAR_DELAY = 70;
+  var DEF_HELP_CMD = '\nType "help" to list commands...';
+
   var currLine = 0;
   var currWord = 0;
   var typedMessage = '';
 
   $('#term').terminal(function(command, term) {
-
+    console.log(command);
+    if(command === 'help') {
+      return showHelp(term);
+    } else if(command === 'quit') {
+      return closeTerminal(term);
+    } else if(command === 'play') {
+      reInit();
+      term.set_prompt('');
+      term.clear();
+      insert(term, TERM_LINE);
+      showMessage(term);
+    } else if(command === 'credits') {
+      return showCredits(term);
+    } else {
+      term.echo('Unknown command. ' + DEF_HELP_CMD);
+    }
   }, {
     prompt: '',
     name: 'Wedding invitation',
@@ -40,16 +59,16 @@ var Terminal = function() {
   });
 
   function showMessage(term) {
-    typeMessage(term, MSG[currLine], 10, function() {
+    typeMessage(term, MSG[currLine], CHAR_DELAY, function() {
       ++currLine;
       if(currLine === MSG.length) {
         echoContent(term, '');
         reInit();
+        term.set_prompt(PROMPT_MSG);
         return;
       }
       showMessage(term);
     });
-
   }
 
   function typeMessage(term, message, delay, finish) {
@@ -101,7 +120,39 @@ var Terminal = function() {
   }
 
   function reInit() {
+    typedMessage = '';
+    currWord = 0;
+    currLine = 0;
+  }
 
+  function showHelp(term) {
+    term.echo('\nWelcome to the Wedding invitation app.\nFollowing commands are currently supported -' );
+    term.echo('1. help' );
+    term.echo('2. play' );
+    term.echo('3. credits' );
+    term.echo('4. quit' );
+    term.echo('\n');
+  }
+
+  function closeTerminal(term) {
+    var $termContainer = $('.term-container');
+    $termContainer.fadeOut(200, function() {
+      term.clear();
+      term.destroy();
+    });
+    term.pause();
+    reInit();
+    $termContainer.trigger('close');
+  }
+
+  function showCredits(term) {
+    term.echo('\n');
+    term.echo('Following open source projects have been used to create this page - ');
+    term.echo('jQuery - ');
+    term.echo('jQuery terminal - ');
+    term.echo('underscore.js - ');
+    term.echo('express - ');
+    term.echo('Grunt - ');
   }
 };
 
@@ -137,18 +188,47 @@ function initTime() {
 
 
 function initApp() {
+  var TERMINAL_OPEN_DELAY = 800;
   var isStarted = false;
-  $('#btnWeddingInvitation').click(function() {
+  var $termContainer = $('.term-container');
+  var $mainBody = $('.main-body');
+  var $iconTerminal = $('#iconTerminal');
+  var $btnWeddingInvitation = $('#btnWeddingInvitation');
+  var $blossomImg = $mainBody.find('.blossom-img');
+
+  $btnWeddingInvitation.click(function() {
     if(isStarted) {
-      alert('Wedding invitation is already running!')
+      alert('Wedding invitation is already running!');
       return;
     }
     isStarted = true;
-    $('.main-body').css('background-image', 'url("assets/img/blossom-dj.png")');
+    // Show Blossom and show the terminal icon.
+    $blossomImg.fadeIn(250);
+    $iconTerminal.removeClass('hide');
+
+    // Change the image soruce to a PNG file to stop the image from blinking.
+    changeImg($(this), 'png');
+
+    // Open the terminal after a small delay.
     setTimeout(function() {
-      $('.term-container').fadeIn(250, function() {
+      setTimeout(function() {
         Terminal();
-      });
-    }, 1000);
-  })
+      }, 160);
+      $termContainer.fadeIn(250);
+    }, TERMINAL_OPEN_DELAY);
+  });
+
+  $termContainer.on('close', function() {
+    isStarted = false;
+    $blossomImg.fadeOut(250);
+    $iconTerminal.addClass('hide');
+    changeImg($btnWeddingInvitation, 'gif');
+  });
+
+  function changeImg($container, imgType) {
+    var $img = $container.find('img');
+    var currSrc = $img.attr('src');
+    var targetSrc = currSrc.slice(0, currSrc.length - 3) + imgType;
+    $img.attr('src', targetSrc);
+  }
 }

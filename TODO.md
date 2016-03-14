@@ -1,9 +1,10 @@
-- Stop blinking the phone when the terminal is open.
-- Show the terminal icon in the taskbar.
+- ~~Stop blinking the phone when the terminal is open.~~
+- ~~Show the terminal icon in the taskbar.~~
 - Show credits.
-- Show the prompt again after the demo is over.
-- Allow replaying of demo.
-- Closing the terminal should be possible.
-- Closing the terminal should remove Blossom.
-- Closing the terminal should make the wedding invitation icon blink again.
+- ~~Show the prompt again after the demo is over.~~
+- ~~Allow replaying of demo.~~
+- ~~Closing the terminal should be possible.~~
+- ~~Closing the terminal should remove Blossom.~~
+- ~~Closing the terminal should make the wedding invitation icon blink again.~~
 - Background color
+- Close button on terminal

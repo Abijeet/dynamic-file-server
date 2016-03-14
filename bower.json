@@ -7,7 +7,6 @@
     "Abijeet Patro <abijeetpatro@gmail.com>"
   ],
   "dependencies": {
-    "font-awesome": "~4.5.0",
     "jquery": "~2.1.4",
     "jquery.terminal": "0.9.3"
   },
