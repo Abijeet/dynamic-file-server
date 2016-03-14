@@ -3,7 +3,7 @@
 function getConfig(key, defaultVal) {
   if(_CONFIG_.hasOwnProperty(key)) {
     return _CONFIG_[key];
-  } 
+  }
   var resVal = fetchFromObject(key);
   if(resVal) {
     return resVal;
@@ -14,9 +14,9 @@ function getConfig(key, defaultVal) {
 global.GET_CONFIG = getConfig;
 
 var _CONFIG_ = {
-  app_base_path: __dirname + '/', 
+  app_base_path: __dirname + '/',
   port: 2368,
-  ip: 'localhost'   
+  ip: 'localhost'
 };
 
 function fetchFromObject(obj, prop) {
@@ -32,7 +32,7 @@ function fetchFromObject(obj, prop) {
     return obj[prop];
 }
 _CONFIG_['app_log_path'] = _CONFIG_.app_base_path + 'logs/';
-_CONFIG_['is_production'] = false;
+_CONFIG_['is_production'] = true;
 _CONFIG_['app_asset_path'] = _CONFIG_.app_base_path + 'public_html/assets/';
 
 module.exports = getConfig;

@@ -10,14 +10,14 @@ var Terminal = function() {
   var ECHO_START_CHAR = '!~';
   var TERM_LINE = '-------------------------------------------------------------------------';
   var MSG = [
-    'We would like to invite you to our wedding on the 20th of March, 2016.',
-    'We\'re having a small celebration at Vijayawada to mark the ocassion.',
+    'Hi there! We\'re getting married on the 20th of March, 2016, and are',
+    'having a small celebration at Vijayawada to mark the ocassion.',
     'We would love to have you with us on that day at 9:30 in the evening.',
     '',
     'The event will be held at Ilapuram Convention Hall.',
     'Gandhi Nagar, Hanumanpet,',
     'Vijayawada - 520003',
-    ECHO_START_CHAR + 'Google Map - https://goo.gl/WFf5wl',
+    ECHO_START_CHAR + 'Google map - https://goo.gl/WFf5wl',
     '',
     'With love,',
     'Sravani & Abijeet.'
@@ -29,6 +29,8 @@ var Terminal = function() {
   var currLine = 0;
   var currWord = 0;
   var typedMessage = '';
+  var primTimeout = null;
+  var _term = null;
 
   $('#term').terminal(function(command, term) {
     console.log(command);
@@ -52,6 +54,7 @@ var Terminal = function() {
     name: 'Wedding invitation',
     greetings: '',
     onInit: function(term) {
+      _term = term;
       insert(term, TERM_LINE);
       showMessage(term);
     },
@@ -86,7 +89,7 @@ var Terminal = function() {
       return;
     }
 
-    setTimeout(function() {
+    primTimeout = setTimeout(function() {
       insert(term, message[currWord], false);
       ++currWord;
       if(currWord === message.length) {
@@ -123,6 +126,10 @@ var Terminal = function() {
     typedMessage = '';
     currWord = 0;
     currLine = 0;
+    if(primTimeout) {
+      clearTimeout(primTimeout);
+      primTimeout = null;
+    }
   }
 
   function showHelp(term) {
@@ -135,6 +142,9 @@ var Terminal = function() {
   }
 
   function closeTerminal(term) {
+    if(!term) {
+      term = _term;
+    }
     var $termContainer = $('.term-container');
     $termContainer.fadeOut(200, function() {
       term.clear();
@@ -146,14 +156,26 @@ var Terminal = function() {
   }
 
   function showCredits(term) {
-    term.echo('\n');
+    term.echo(' ');
     term.echo('Following open source projects have been used to create this page - ');
-    term.echo('jQuery - ');
-    term.echo('jQuery terminal - ');
-    term.echo('underscore.js - ');
-    term.echo('express - ');
-    term.echo('Grunt - ');
+    term.echo(TERM_LINE);
+    term.echo('jQuery - http://jquery.com/');
+    term.echo('jQuery terminal - http://terminal.jcubic.pl/');
+    term.echo('underscore.js - http://underscorejs.org/');
+    term.echo('express - http://expressjs.com/');
+    term.echo('node.js - https://nodejs.org/');
+    term.echo('ejs - http://ejs.co/');
+    term.echo(TERM_LINE);
+    term.echo('Images');
+    term.echo(TERM_LINE);
+    term.echo('Powerpuff girls phone - http://goo.gl/2nqRE6');
+    term.echo('Blossom DJ - http://goo.gl/hPBFaw');
+    term.echo(' ');
   }
+
+  return {
+    close: closeTerminal
+  };
 };
 
 function initTime() {
@@ -195,6 +217,7 @@ function initApp() {
   var $iconTerminal = $('#iconTerminal');
   var $btnWeddingInvitation = $('#btnWeddingInvitation');
   var $blossomImg = $mainBody.find('.blossom-img');
+  var mainTerm = null;
 
   $btnWeddingInvitation.click(function() {
     if(isStarted) {
@@ -212,7 +235,7 @@ function initApp() {
     // Open the terminal after a small delay.
     setTimeout(function() {
       setTimeout(function() {
-        Terminal();
+        mainTerm = Terminal();
       }, 160);
       $termContainer.fadeIn(250);
     }, TERMINAL_OPEN_DELAY);
@@ -223,6 +246,14 @@ function initApp() {
     $blossomImg.fadeOut(250);
     $iconTerminal.addClass('hide');
     changeImg($btnWeddingInvitation, 'gif');
+  });
+
+  $termContainer.find('.close').click(function() {
+    if(mainTerm) {
+      mainTerm.close();
+      mainTerm = null;
+    }
+    $termContainer.trigger('close');
   });
 
   function changeImg($container, imgType) {

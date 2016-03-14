@@ -109,15 +109,10 @@ module.exports = function(grunt) {
     // Concatenate bower components
     bower_concat: {
       all: {
-        dest:     'dist/vendor.js',
-        cssDest:  'dist/vendor.css',
+        dest:     'public_html/dist/vendor.js',
+        cssDest:  'public_html/dist/vendor.css',
         mainFiles: {
-          'jquery' : 'dist/jquery.min.js',
-          'bootstrap': [
-            'dist/css/bootstrap.min.css',
-            'dist/js/bootstrap.min.js'
-          ],
-          'font-awesome': 'public_html/assets/css/font-awesome.min.css',
+          'jquery' : 'public_html/dist/jquery.min.js',
         },
         dependencies: {
         },
@@ -128,9 +123,9 @@ module.exports = function(grunt) {
     clean: {
       all: {
         src: [
-          'dist/vendor.js',
-          'dist/vendor.css',
-          'dist/style.css',
+          'public_html/dist/vendor.js',
+          'public_html/dist/vendor.css',
+          'public_html/dist/style.css',
           '!dist/!.gitignore',
           'dist/*'
         ]
@@ -160,13 +155,13 @@ module.exports = function(grunt) {
   grunt.registerTask('validate', 'Validate CSS and JS', function() {
     grunt.task.run(['jshint', 'scsslint']);
   });
-  
+
   grunt.registerTask('build', 'Build the theme', function() {
     grunt.task.run('clean');
     grunt.task.run('validate');
     grunt.task.run(['sass', 'bower_concat', 'copy']);
   });
-  
+
   grunt.registerTask('default', 'Default task', function() {
     // Just build if necessary
     var build = false;

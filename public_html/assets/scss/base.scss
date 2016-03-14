@@ -87,12 +87,18 @@ body {
 }
 .main-body {
   min-height: 100vh;
+  background-image: url('../img/bg/dg_lights_4.1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .blossom-img {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    left: 35px;
     display: none;
+    @media (max-width: 1500px) {
+      width: 610px;
+    }
     @media (max-width: 1300px) {
       width: 510px;
     }
@@ -105,15 +111,14 @@ body {
   }
 
   .icon {
-    width: 84px;
+    width: 91px;
     text-align: center;
-    margin-top: 12px;
-    margin-left: 12px;
+    margin-top: 15px;
+    margin-left: 15px;
     cursor:pointer;
 
     img {
-      width: 76px;
-      height: 60px;
+      width: 84px;
       margin-bottom: -4px;
     }
 
@@ -121,6 +126,7 @@ body {
       text-align: center;
       font-size:12px;
       text-shadow: 0px 1px 1px rgba(88, 88, 88, 0.8);
+      color: #fff;
     }
   }
 }
@@ -179,7 +185,7 @@ body {
   }
 }
 .term-container {
-  border: 2px solid #000;
+  box-shadow: 7px 5px 28px -6px #FE0002;
   width: 640px;
   height: 440px;
   float: right;
@@ -187,6 +193,28 @@ body {
   margin-top: 25px;
   display: none;
   border-radius: 3px;
+  @media (min-width: 1590px) {
+    margin-right: 100px;
+    margin-top: 40px;
+  }
+  @media (min-width: 1860px) {
+    margin-right: 230px;
+    margin-top: 50px;
+  }
+
+  .close {
+    float: right;
+    margin-right: 5px;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 0px 4px 1px 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #cfcfcf;
+  }
 }
 .term-title {
   text-align: center;
@@ -204,6 +232,7 @@ body {
   opacity: 0.8;
   color: $terminal-font-color;
   height: 400px;
+  font-weight: bold;
 
   .cmd, .command div, .terminal-output div {
     color: $terminal-font-color;

@@ -26,45 +26,41 @@ if (GET_CONFIG('is_production') && cluster.isMaster) {
   cluster.on('exit', function() {
     cluster.fork();
   });
-} else {  
+} else {
   app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', 'Abijeet & Sravani');
     next();
   });
-  
+
   i18n.configure({
     locales: ['en'],
     defaultLocale: 'en',
     directory: GET_CONFIG('app_base_path') + 'locales',
     objectNotation: true
   });
-  
+
   app.set('view engine', 'ejs');
   app.locals = {
     i18n: i18n.__,
     isProd: GET_CONFIG('is_production'),
-  };  
+  };
   app.set('views', __dirname + '/public_html/');
   app.use(i18n.init);
-  
+
   app.get('/', function(request, response) {
     var fileName = 'index.ejs';
-    response.render(fileName);  
+    response.render(fileName);
   });
-  
+
   app.get('/:filename', function (request, response) {
     var fileName = request.params.filename;
     response.render(fileName + '.ejs');
   });
-  
+
   // Render static files.
-  if(GET_CONFIG('is_production')) {
-    app.use('/', express.static(__dirname + '/dist/'));  
-  } else {
-    app.use('/', express.static(__dirname + '/public_html/'));
-  }
-  
-  
+  app.use('/', express.static(__dirname + '/public_html/'));
+
+
   var ipToUse = networkInterface.getIpAddressForNetworkInterface() || GET_CONFIG('ip');
   http.createServer(app).listen(GET_CONFIG('port'), ipToUse, function(error) {
     if (error) {

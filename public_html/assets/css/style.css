@@ -68,12 +68,18 @@ body {
     font-weight: 600; }
 
 .main-body {
-  min-height: 100vh; }
+  min-height: 100vh;
+  background-image: url("../img/bg/dg_lights_4.1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
   .main-body .blossom-img {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    left: 35px;
     display: none; }
+    @media (max-width: 1500px) {
+      .main-body .blossom-img {
+        width: 610px; } }
     @media (max-width: 1300px) {
       .main-body .blossom-img {
         width: 510px; } }
@@ -84,19 +90,19 @@ body {
       .main-body .blossom-img {
         width: 320px; } }
   .main-body .icon {
-    width: 84px;
+    width: 91px;
     text-align: center;
-    margin-top: 12px;
-    margin-left: 12px;
+    margin-top: 15px;
+    margin-left: 15px;
     cursor: pointer; }
     .main-body .icon img {
-      width: 76px;
-      height: 60px;
+      width: 84px;
       margin-bottom: -4px; }
     .main-body .icon span {
       text-align: center;
       font-size: 12px;
-      text-shadow: 0px 1px 1px rgba(88, 88, 88, 0.8); }
+      text-shadow: 0px 1px 1px rgba(88, 88, 88, 0.8);
+      color: #fff; }
 
 .taskbar {
   height: 30px;
@@ -139,7 +145,7 @@ body {
     background: rgba(51, 51, 51, 0.7); }
 
 .term-container {
-  border: 2px solid #000;
+  box-shadow: 7px 5px 28px -6px #FE0002;
   width: 640px;
   height: 440px;
   float: right;
@@ -147,6 +153,24 @@ body {
   margin-top: 25px;
   display: none;
   border-radius: 3px; }
+  @media (min-width: 1590px) {
+    .term-container {
+      margin-right: 100px;
+      margin-top: 40px; } }
+  @media (min-width: 1860px) {
+    .term-container {
+      margin-right: 230px;
+      margin-top: 50px; } }
+  .term-container .close {
+    float: right;
+    margin-right: 5px;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 0px 4px 1px 4px;
+    font-weight: bold;
+    cursor: pointer; }
+  .term-container .close:hover {
+    color: #cfcfcf; }
 
 .term-title {
   text-align: center;
@@ -162,7 +186,8 @@ body {
 #term {
   opacity: 0.8;
   color: #00BE2C;
-  height: 400px; }
+  height: 400px;
+  font-weight: bold; }
   #term .cmd, #term .command div, #term .terminal-output div {
     color: #00BE2C;
     line-height: 17px; }
