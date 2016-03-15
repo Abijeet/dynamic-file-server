@@ -235,6 +235,7 @@ body {
   color: $terminal-font-color;
   height: 400px;
   font-weight: bold;
+  width: 620px;
 
   .cmd, .command div, .terminal-output div {
     color: $terminal-font-color;

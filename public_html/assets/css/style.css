@@ -188,7 +188,8 @@ body {
   opacity: 0.8;
   color: #00BE2C;
   height: 400px;
-  font-weight: bold; }
+  font-weight: bold;
+  width: 620px; }
   #term .cmd, #term .command div, #term .terminal-output div {
     color: #00BE2C;
     line-height: 17px; }
